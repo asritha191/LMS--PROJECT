@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 
 const Signup = () => {
-  const { login } = useAuth()
+  const { signup } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [email, setEmail] = useState('')
@@ -13,7 +13,7 @@ const Signup = () => {
 
   const from = location.state?.from?.pathname || '/'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -32,7 +32,7 @@ const Signup = () => {
       return
     }
 
-    const success = login(email, password)
+    const success = await signup(email, password)
     if (!success) {
       setError('Unable to create account. Please try again.')
       return
@@ -93,4 +93,3 @@ const Signup = () => {
 }
 
 export default Signup
-

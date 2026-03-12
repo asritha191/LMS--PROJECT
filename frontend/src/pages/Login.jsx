@@ -12,7 +12,7 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || '/'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -21,7 +21,7 @@ const Login = () => {
       return
     }
 
-    const success = login(email, password)
+    const success = await login(email, password)
     if (!success) {
       setError('Invalid credentials.')
       return
@@ -70,4 +70,3 @@ const Login = () => {
 }
 
 export default Login
-
